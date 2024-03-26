@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update IDs</title>
+
+    <style>
+        body {
+            background-image: url('/static/ramadan.jpeg'); /* Replace 'path/to/img.png' with the actual path to your image file */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* height: 100vh; */
+
+        }
+
+        h1, label {
+            color: rgb(29, 157, 203);
+            text-align: center;
+        }
+
+        #idForm {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background for better visibility */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #lineCount {
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        #logo {
+            max-width: 30%; /* Adjust the maximum width as needed */
+            margin-top: 20px; /* Adjust the top margin as needed */
+            margin-bottom: 20px; /* Adjust the bottom margin as needed */
+            margin-left: auto;
+            margin-right: auto;
+            position: center;
+        }
+
+        /* .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* height: 100%; Fill the available height */
+        /* } */
+
+        .list-container {
+            position: absolute;
+            bottom: 0;
+            left: 0; /* Adjust if needed */
+            width: 100%; /* Make the div full-width */
+            height: 50px; Adjust the height as needed
+            background-color: lightcoral;
+            text-align: center; /* Center content horizontally */
+            line-height: 50px; /* Center content vertically */
+        }
+    </style>
+</head>
+
+<body>
+    <img id="logo" src="/static/msalogo.png" alt="Logo"> <!-- Replace 'path/to/your/logo.png' with the actual path to your logo -->
+    
+    
+    
+    <br>
+    <h1>MIT MSA Iftars Check-in</h1>
+    
+    <script>
+        function submitForm() {
+            var idInput = document.getElementById("idInput").value;
+            // Remove trailing newline character
+            idInput = idInput.replace(/\n$/, '');
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/update_ids", true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(JSON.stringify({ id: idInput }));
+
+            // You can add additional logic for handling the response if needed
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);
+                    updateLineCount();
+                    document.getElementById("idForm").reset(); // Reset the form after submission
+                }
+            };
+        }
+            function updateLineCount() {
+                fetch('/get_line_count')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('lineCount').innerText = `Number of Attendees Today: ${data.line_count}`;
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            // Initial update when the page loads
+            document.addEventListener('DOMContentLoaded', updateLineCount);
+
+            document.addEventListener('DOMContentLoaded', function () {
+            fetch('/get_guests')
+                .then(response => response.json())
+                .then(data => {
+                    const jsonDataList = document.getElementById('jsonDataList');
+                    data.forEach(entry => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `<strong>Guest Name:</strong> ${entry.name}<br>
+                                            <strong>Host Name:</strong> ${entry.mit_name}<br>
+                                            <strong>Host Email:</strong> ${entry.email}<br>
+                                            <strong>Host's ID:</strong> ${entry.mit_id}`;
+                        jsonDataList.appendChild(listItem);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+
+
+    <div>
+        <form id="idForm" onsubmit="submitForm(); return false;">
+            <label for="idInput">Enter ID:</label>
+            <input type="text" id="idInput" required>
+            <button type="submit">Submit</button>
+        <p id="lineCount"></p>
+        </form>
+
+        
+    </div>
+
+
+
+    <div class="list-container">
+       
+        
+        <ul id="jsonDataList">
+            Guests
+            </ul>
+            
+    
+    </div>
+
+
+</body>
+</html>

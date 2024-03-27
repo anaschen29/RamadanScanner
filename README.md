@@ -12,3 +12,7 @@ Assalamu Alaykom! This is how we are running the tap access system for Ramadan 2
 If the entry is there, then just ask the host to tap for every guest. The host **has to** tap for their guests.
 7) This means that the counter you see there should count exactly the number of people in Lobdell, including MIT affiliates, hosts, guests, children etc... (Parents can tap for their kids). 
 8) When done, make sure to end the script on your terminal by running `^C`. Next, commit, add, and push the changes to the repo if you are a collaborator. Otherwise, contact me and I'll let you know what to do. Return the reader to the closet in Lobdell (or to me). 
+
+
+
+رمضان كريم. 

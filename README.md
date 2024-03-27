@@ -9,9 +9,10 @@ Assalamu Alaykom! This is how we are running the tap access system for Ramadan 2
 5) Make sure the affiliate taps when the cursor in the top right. When this happens, this should increment the counter by one. If this didn't happen, then the cursor was not in the right field, so please double check and ask them to tap again. 
 6) For guests, the guest list should at the bottom of your browser screen. Each entry should look like this. 
 ![Screen Shot 2024-03-27 at 8 40 46 AM](https://github.com/anaschen29/RamadanScanner/assets/37285929/03cbcc76-54d7-4873-88b7-3ff2295ef257)
+
 If the entry is there, then just ask the host to tap for every guest. The host **has to** tap for their guests.
-7) This means that the counter you see there should count exactly the number of people in Lobdell, including MIT affiliates, hosts, guests, children etc... (Parents can tap for their kids). 
-8) When done, make sure to end the script on your terminal by running `^C`. Next, commit, add, and push the changes to the repo if you are a collaborator. Otherwise, contact me and I'll let you know what to do. Return the reader to the closet in Lobdell (or to me). 
+8) This means that the counter you see there should count exactly the number of people in Lobdell, including MIT affiliates, hosts, guests, children etc... (Parents can tap for their kids). 
+9) When done, make sure to end the script on your terminal by running `^C`. Next, commit, add, and push the changes to the repo if you are a collaborator. Otherwise, contact me and I'll let you know what to do. Return the reader to the closet in Lobdell (or to me). 
 
 
 

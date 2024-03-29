@@ -4,6 +4,9 @@
 Assalamu Alaykom! This is how we are running the tap access system for Ramadan 2024. Here is a general overview of how to run this for a day's iftar on a mac/linux. 
 1) Grab the reader from the closet in Lobdell. We also have a USB-C to USB adapter in it case you need it. 
 2) `cd` into the directory you want to use and clone the git repo by running `git clone https://github.com/anaschen29/RamadanScanner.git` 
+
+Once inside the repo, make sure to run `pip install -r requirements.txt`. This should install the dependencies required for the app. If there is a dependency you don't have installed, you can always run `pip install <dependency>`.
+
 3) Run the create_files.py script (you can do this using the command `python3 create_files.py` or `python create_files.py`). This creates a .txt file for the day's taps, and should display something like _Empty file 'taps/taps(03-25).txt' created._ **ONLY DO THIS ONCE PER DAY.**
 4) Run the app.py script (again, you can do `python3 app.py` or `python app.py`). This will run on your local device a flask app which you will use to tap people in, and will give you a link you can open in your browser. 
 5) Make sure the affiliate taps when the cursor in the top right. When this happens, this should increment the counter by one. If this didn't happen, then the cursor was not in the right field, so please double check and ask them to tap again. 
